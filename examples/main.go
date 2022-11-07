@@ -16,7 +16,7 @@ func main() {
 	)
 
 	var m = nmail.NewHTMLMessage("Title", "<a href='http://www.google.com'>Hello Google</a>")
-	m.From = "Yang<webreservation@hoteldelins.com>"
+	m.From = "Yang<smartwalle@gmail.com>"
 	m.To = []string{"917996695@qq.com"}
 
 	for i := 0; i < 10; i++ {
