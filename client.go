@@ -114,7 +114,7 @@ func (this *Client) Send(message *Message) error {
 	}
 
 	if message.From == "" || len(to) == 0 {
-		return errors.New("must specify at least one username address and one To address")
+		return errors.New("must specify at least one From address and one To address")
 	}
 	sender, err := message.parseSender()
 	if err != nil {
