@@ -22,7 +22,7 @@ func (this *SMTPClient) Close() error {
 
 type Option func(c *Client)
 
-func WithDial(dialer Dialer) Option {
+func WithDialer(dialer Dialer) Option {
 	return func(c *Client) {
 		c.dialer = dialer
 	}
