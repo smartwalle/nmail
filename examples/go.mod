@@ -4,8 +4,7 @@ go 1.12
 
 require (
 	github.com/smartwalle/nmail v0.0.0
- )
-
-replace (
-	github.com/smartwalle/nmail => ../
+	github.com/smartwalle/npool v0.0.2 // indirect
 )
+
+replace github.com/smartwalle/nmail => ../
