@@ -283,7 +283,7 @@ func parseMIMEParts(hs textproto.MIMEHeader, b io.Reader) ([]*part, error) {
 // Attach is used to attach content from an io.Reader to the email.
 // Required parameters include an io.Reader, the desired filename for the attachment, and the Content-Type
 // The function will return the created Attachment for reference, as well as nil for the error, if successful.
-func (m *Message) Attach(r io.Reader, filename string, c string) (a *Attachment, err error) {
+func (m *Message) Attach(r io.Reader, filename string, contentType string) (a *Attachment, err error) {
 	var buffer bytes.Buffer
 	if _, err = io.Copy(&buffer, r); err != nil {
 		return
@@ -293,8 +293,8 @@ func (m *Message) Attach(r io.Reader, filename string, c string) (a *Attachment,
 		Header:   textproto.MIMEHeader{},
 		Content:  buffer.Bytes(),
 	}
-	if c != "" {
-		at.Header.Set("Content-Type", c)
+	if contentType != "" {
+		at.Header.Set("Content-Type", contentType)
 	} else {
 		at.Header.Set("Content-Type", "application/octet-stream")
 	}
