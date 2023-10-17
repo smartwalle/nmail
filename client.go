@@ -16,8 +16,8 @@ type SMTPClient struct {
 	*smtp.Client
 }
 
-func (this *SMTPClient) Close() error {
-	return this.Client.Quit()
+func (c *SMTPClient) Close() error {
+	return c.Client.Quit()
 }
 
 type Option func(c *Client)
@@ -102,7 +102,7 @@ func NewClient(username, password, host, port string, opts ...Option) *Client {
 	return nClient
 }
 
-func (this *Client) Send(message *Message) error {
+func (c *Client) Send(message *Message) error {
 	to := make([]string, 0, len(message.To)+len(message.Cc)+len(message.Bcc))
 	to = append(append(append(to, message.To...), message.Cc...), message.Bcc...)
 	for i := 0; i < len(to); i++ {
@@ -125,7 +125,7 @@ func (this *Client) Send(message *Message) error {
 		return err
 	}
 
-	conn, err := this.pool.Get(context.Background())
+	conn, err := c.pool.Get(context.Background())
 	if err != nil {
 		return err
 	}
@@ -150,6 +150,6 @@ func (this *Client) Send(message *Message) error {
 	return w.Close()
 }
 
-func (this *Client) Close() error {
-	return this.pool.Close()
+func (c *Client) Close() error {
+	return c.pool.Close()
 }
